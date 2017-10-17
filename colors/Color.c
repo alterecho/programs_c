@@ -25,7 +25,13 @@ Color colorWith(double red, double green, double blue, double alpha) {
 	return c;
 }
 
-void printColor(Color color, char *tag) {
+Color colorWithString(const char *str) {
+	printf("\ncolorWithString: %s", str);
+	Color c;
+	return c;
+}
+
+void printColor(Color color, const char *tag) {
 	if (tag == NULL) {
 		printf("\n");
 	} else {
