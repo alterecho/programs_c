@@ -10,6 +10,8 @@ int main(int argc, char **argv) {
 	
 	Color c_str = colorWithString("ffff");
 	printColor(c_str, "from String");
-	
+
+	decimalFromHex("fa1F");	
+
 	return 0;
 }

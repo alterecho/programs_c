@@ -1,5 +1,6 @@
 #include "Color.h"
 #include <stdio.h>
+#include <string.h>
 
 /* limits value at given pointer to 255.0 */
 void checkColorComponent(double *value) {
@@ -27,6 +28,11 @@ Color colorWith(double red, double green, double blue, double alpha) {
 
 Color colorWithString(const char *str) {
 	printf("\ncolorWithString: %s", str);
+	
+	size_t len = strlen(str);
+	printf("\nlength: %lu", len);
+	printf("\nbef:%s", str);
+
 	Color c;
 	return c;
 }
