@@ -1,0 +1,1 @@
+char *hexStrFromDec(long decimal);
