@@ -5,14 +5,16 @@
 void prependChar(const char c, char *dest);
 char hexCharForDec(long decimal);
 
+/** Returns a string representing the hexadecimal value, for the given decimal */
 char *hexStrFromDec(long decimal) {
 
-	printf("\nhexStrFromDec: %ld", decimal);
 	long n = decimal;
-	
+
+	/* allocate for null terminator */	
 	char *hex_str = (char *)malloc(sizeof(char) * 10);
 	strcpy(hex_str, "\0");
 
+	/* if decimal is 16 or greater, keep dividing until the quotient is less than 16 */
 	if (n >= 16) {
 		while(n >= 15) {
 			long quot = n / 16;	
@@ -25,23 +27,25 @@ char *hexStrFromDec(long decimal) {
 		
 			n = quot;
 
+			/* if the quotient is less than 16, prepend the hexadecimal 
+			 * equivalent of the quotient to the return string */
 			if (n < 16) {
 				c = hexCharForDec(n);
 				prependChar(c, hex_str);
 			}
 		}
-	} else {
+	}
+       /* set the hexadecimal equivalent of the decimal as the return string */	
+	else {
 		char c = hexCharForDec(n);
 		prependChar(c, hex_str);
 	}
 
 
-	printf("\n");
-
 	return hex_str;
-
 }
 
+/* returns the hexadecimal character (0 to f), for the given decimal */
 char hexCharForDec(long decimal) {
 	printf("\nhexCharFoDec: %ld\n", decimal);
 	switch (decimal) {
@@ -66,11 +70,16 @@ char hexCharForDec(long decimal) {
 }
 
 
+/* prepends the given character to the given string */
 inline void prependChar(const char c, char *dest) {
-	printf("\nprependChar: %c, %s", c, dest);
 	size_t dest_length = strlen(dest);
+
+	/* resize the string to accomodate an extra character (to prepend) */
 	dest = (char *)realloc(dest, dest_length + 1);
+
+	/* offset the existing string by 1 byte, to accomodate (prepend) the given character */
 	memmove(&dest[1], &dest[0], dest_length);
+
+	/* set the given character first character (now empty/garbage?) of the string */
 	dest[0] = c;
-	printf("\ndest: %s\n", dest);
 }
