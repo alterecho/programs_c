@@ -20,16 +20,17 @@ char *hexStrFromDec(long decimal) {
 		char c = hexCharForDec(rem);
 		
 		size_t hexString_size = sizeof(hexString + sizeof(char) * 1);
+		hexString = (char *)realloc(hexString, sizeof(hexString) + sizeof(char) * 1);
 		strcat(hexString, &c);
 		
-	
+		
 		printf("\nquot: %ld, rem: %ld, hex_char:%c, hex_str: %s", quot, rem, c, hexString);	
 		n = quot;
 	}
 
 	printf("\n");
 
-	return NULL;
+	return hexString;
 
 }
 
