@@ -20,12 +20,12 @@ int main(int argc, char **argv) {
 	
 	/* binary -> decimal */
 	if (strcmp("-bd", argv[1]) == 0) {
-		printf("\ndecimal value = %ld\n", decFromBinStr(argv[2]));
+		printf("\ndecimal value of '%s' = %ld\n", argv[2], decFromBinStr(argv[2]));
 	}
 	/* decimal -> hex */
 	else if (strcmp("-dh", argv[1]) == 0 || strcmp("-dx", argv[1]) == 0) {
 		int n = strtol(argv[2], NULL, 10);
-		printf("\ndecimal value = %s\n", hexStrFromDec(n));
+		printf("\nhex value of '%s' = %s\n", argv[2], hexStrFromDec(n));
 	}
        /* unrecognized */
 	else {

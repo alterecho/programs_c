@@ -23,7 +23,6 @@ char *hexStrFromDec(long decimal) {
 			size_t hex_str_length = strlen(hex_str);
 			prependChar(c, hex_str);
 		
-			printf("\nAFT: quot: %ld, rem: %ld, hex_char:%c, hex_str: %s, strlen: %ld, sizeof: %ld", quot, rem, c, hex_str, strlen(hex_str), sizeof(hex_str));	
 			n = quot;
 
 			if (n < 16) {
