@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 
+void prependChar(const char c, char *dest);
 char hexCharForDec(long decimal);
 
 char *hexStrFromDec(long decimal) {
@@ -9,31 +10,36 @@ char *hexStrFromDec(long decimal) {
 	printf("\nhexStrFromDec: %ld", decimal);
 	long n = decimal;
 	
-	char *hexString = (char *)malloc(sizeof(char) * 10);
-	printf("\nchar size: %ld, ptr: %ld", sizeof(char), sizeof(char *));
-	printf("\nhexString len alloc: %ld", strlen(hexString));
-	strcpy(hexString, "\0");
-	printf("\nhexString len: %ld", strlen(hexString));
+	char *hex_str = (char *)malloc(sizeof(char) * 10);
+	strcpy(hex_str, "\0");
 
-	while(n > 16) {
+	if (n >= 16) {
+		while(n >= 15) {
+			long quot = n / 16;	
+			long rem = n % 16;
+			char c = hexCharForDec(rem);
+			const char char_str[] = {c, '0'};
+		
+			size_t hex_str_length = strlen(hex_str);
+			prependChar(c, hex_str);
+		
+			printf("\nAFT: quot: %ld, rem: %ld, hex_char:%c, hex_str: %s, strlen: %ld, sizeof: %ld", quot, rem, c, hex_str, strlen(hex_str), sizeof(hex_str));	
+			n = quot;
 
-		long quot = n / 16;
-		
-		long rem = n % 16;
-		
-		char c = hexCharForDec(rem);
-		const char char_str[] = {c, '\0'};
-		
-		hexString = (char *)realloc(hexString, sizeof(char) * (strlen(hexString) + 1));
-		strcat(hexString, char_str);
-		
-		printf("\nAFT: quot: %ld, rem: %ld, hex_char:%c, hex_str: %s, strlen: %ld, sizeof: %ld", quot, rem, c, hexString, strlen(hexString), sizeof(hexString));	
-		n = quot;
+			if (n < 16) {
+				c = hexCharForDec(n);
+				prependChar(c, hex_str);
+			}
+		}
+	} else {
+		char c = hexCharForDec(n);
+		prependChar(c, hex_str);
 	}
+
 
 	printf("\n");
 
-	return hexString;
+	return hex_str;
 
 }
 
@@ -58,4 +64,14 @@ char hexCharForDec(long decimal) {
 		case 15: return 'f';
 		default: return 'x';
 	}
+}
+
+
+inline void prependChar(const char c, char *dest) {
+	printf("\nprependChar: %c, %s", c, dest);
+	size_t dest_length = strlen(dest);
+	dest = (char *)realloc(dest, dest_length + 1);
+	memmove(&dest[1], &dest[0], dest_length);
+	dest[0] = c;
+	printf("\ndest: %s\n", dest);
 }
