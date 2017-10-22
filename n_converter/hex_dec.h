@@ -1,1 +1,1 @@
-char *hexStrFromDec(long decimal);
+char *hexStrFromDec_alloc(long decimal);

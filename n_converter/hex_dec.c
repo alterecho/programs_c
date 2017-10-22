@@ -6,7 +6,7 @@ void prependChar(const char c, char *dest);
 char hexCharForDec(long decimal);
 
 /** Returns a string representing the hexadecimal value, for the given decimal */
-char *hexStrFromDec(long decimal) {
+char *hexStrFromDec_alloc(long decimal) {
 
 	long n = decimal;
 
