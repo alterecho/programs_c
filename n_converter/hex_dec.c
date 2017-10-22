@@ -9,22 +9,25 @@ char *hexStrFromDec(long decimal) {
 	printf("\nhexStrFromDec: %ld", decimal);
 	long n = decimal;
 	
-	char *hexString = (char *)malloc(sizeof(char) * 1);
-	strcpy(hexString, "\n");
+	char *hexString = (char *)malloc(sizeof(char) * 10);
+	printf("\nchar size: %ld, ptr: %ld", sizeof(char), sizeof(char *));
+	printf("\nhexString len alloc: %ld", strlen(hexString));
+	strcpy(hexString, "\0");
+	printf("\nhexString len: %ld", strlen(hexString));
 
 	while(n > 16) {
+
 		long quot = n / 16;
-		printf("\nquot:%ld", quot);
+		
 		long rem = n % 16;
 		
 		char c = hexCharForDec(rem);
+		const char char_str[] = {c, '\0'};
 		
-		size_t hexString_size = sizeof(hexString + sizeof(char) * 1);
-		hexString = (char *)realloc(hexString, sizeof(hexString) + sizeof(char) * 1);
-		strcat(hexString, &c);
+		hexString = (char *)realloc(hexString, sizeof(char) * (strlen(hexString) + 1));
+		strcat(hexString, char_str);
 		
-		
-		printf("\nquot: %ld, rem: %ld, hex_char:%c, hex_str: %s", quot, rem, c, hexString);	
+		printf("\nAFT: quot: %ld, rem: %ld, hex_char:%c, hex_str: %s, strlen: %ld, sizeof: %ld", quot, rem, c, hexString, strlen(hexString), sizeof(hexString));	
 		n = quot;
 	}
 
@@ -35,6 +38,7 @@ char *hexStrFromDec(long decimal) {
 }
 
 char hexCharForDec(long decimal) {
+	printf("\nhexCharFoDec: %ld\n", decimal);
 	switch (decimal) {
 		case 0: return '0';
 		case 1: return '1';
