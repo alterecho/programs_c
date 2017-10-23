@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "functions.h"
 
 /** 
  * returns the decimal value for the given binary value (string represented) 
@@ -40,6 +41,40 @@ long decFromBinStr(const char *bin_str) {
 	return dec;
 }
 
+char binCharFromDec(int decimal) {
+	char c = 'x';
+	
+	if (c == 0) {
+		c = '0';
+	} else if (c == 1) {
+		c = '1';
+	}
+
+	return c;
+}
+
 const char *binStrFromDec(long decimal) {
-	return NULL;
+	long n = decimal;
+	printf("\nbinStrFromDec: %ld", n);
+	char *dec_str = NULL;
+	while (n > 1) {
+
+		long quot = n / 2;
+		long rem = n % 2;
+		
+		printf("\nquot: %ld, rem: %ld", quot, rem);
+		char c = binCharFromDec(rem);
+		printf("\nc: %c", c);		
+		printf("\nprepending");
+		prependChar(c, &dec_str);
+		
+		n = quot;
+
+		if (n <= 1) {
+			c = binCharFromDec(n);
+			prependChar(c, &dec_str);
+		}		
+	}
+	
+	return dec_str;
 }

@@ -23,7 +23,7 @@ char *hexStrFromDec_alloc(long decimal) {
 			const char char_str[] = {c, '0'};
 		
 			size_t hex_str_length = strlen(hex_str);
-			prependChar(c, hex_str);
+			prependChar(c, &hex_str);
 		
 			n = quot;
 
@@ -31,14 +31,14 @@ char *hexStrFromDec_alloc(long decimal) {
 			 * equivalent of the quotient to the return string */
 			if (n < 16) {
 				c = hexCharForDec(n);
-				prependChar(c, hex_str);
+				prependChar(c, &hex_str);
 			}
 		}
 	}
        /* set the hexadecimal equivalent of the decimal as the return string */	
 	else {
 		char c = hexCharForDec(n);
-		prependChar(c, hex_str);
+		prependChar(c, &hex_str);
 	}
 
 
