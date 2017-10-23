@@ -22,6 +22,11 @@ int main(int argc, char **argv) {
 	if (strcmp("-bd", argv[1]) == 0) {
 		printf("\ndecimal value of '%s' = %ld\n", argv[2], decFromBinStr(argv[2]));
 	}
+	/* decimal -> binary */
+	else if (strcmp("-db", argv[1]) == 0) {
+		int n = atoi(argv[2]);
+		printf("\nbinary value of '%d' = %s\n", n, binStrFromDec(n));
+	}
 	/* decimal -> hex */
 	else if (strcmp("-dh", argv[1]) == 0 || strcmp("-dx", argv[1]) == 0) {
 		int n = strtol(argv[2], NULL, 10);
