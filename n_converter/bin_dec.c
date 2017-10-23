@@ -39,3 +39,7 @@ long decFromBinStr(const char *bin_str) {
 
 	return dec;
 }
+
+const char *binStrFromDec(long decimal) {
+	return NULL;
+}
