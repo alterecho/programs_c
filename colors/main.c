@@ -1,9 +1,29 @@
 #include <stdio.h>
+#include <string.h>
 #include "functions.h"
 #include "Color.h"
 
 int main(int argc, char **argv) {
-	print(argc, argv);
+	
+	if (argc == 1) {
+		printf("\nno arguments\n");
+		return 1;
+	}
+	
+	if (strcmp(argv[1], "-dh") == 0) {
+		
+	} else if (strcmp(argv[1], "-hd") == 0) {
+		
+	} else {
+		printf("\nunrecognized conversion specifier '%s'\n", argv[1]);
+		return 1;
+	}	
+
+	if (argc == 2) {
+		printf("no values given\n");
+		return 1;
+	}
+	
 	
 	Color c = colorWith(100.0, 200.0, 255.0, 355.0);
 	printColor(c, "myColor");
