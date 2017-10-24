@@ -53,30 +53,36 @@ char binCharFromDec(int decimal) {
 	return c;
 }
 
+/** returns the string represntation of the binary value for the given decimal */
 const char *binStrFromDec(long decimal) {
 	long n = decimal;
-	printf("\nbinStrFromDec: %ld", n);
-	char *dec_str = NULL;
-	while (n > 1) {
 
+	char *dec_str = NULL;
+
+	/* keep dividing until the number is less than 2 */
+	while (n > 1) {
+		
+		//quotient
 		long quot = n / 2;
+
+		//remainder
 		long rem = n % 2;
 		
-		printf("\nquot: %ld, rem: %ld", quot, rem);
+		/* get thae character equivalent of the remainder (char '0' is different from int '0), to prepend */
 		char c = binCharFromDec(rem);
-		printf("\nc: %c", c);		
-		printf("\nprepending");
+
+		/* prepend the character */
 		prependChar(c, &dec_str);
 		
 		n = quot;
-		printf("\ndec_str: %s", dec_str);
+
+		/* if the quotient is less than 2, prepend it to the result, since loop stops after this iteration */
 		if (n <= 1) {
 			c = binCharFromDec(n);
 			prependChar(c, &dec_str);
-			printf("\ndec_str: %s", dec_str);
 		}		
 	}
 	
-		
+			
 	return dec_str;
 }

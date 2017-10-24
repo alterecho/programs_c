@@ -9,20 +9,20 @@ static inline void prependChar(const char c, char **dest) {
 		return;
 	}
 	
-	
-	printf("\naikjdjf");
-	printf("\nprependChar: %c, %s", c, *dest);
         size_t length_dest = 0;
-	size_t length_new = length_dest + 1;
+	size_t length_new = 0;
+	
+	/* if the string is empty, set the size to be allocated. strlen(NULL) crashes */
 	if (*dest == NULL) {
+		/* 1 for the current char + 1 for the null terminator */
 		length_new = 2;			
 	} else {
 		length_dest = strlen(*dest);
+
+		/* 1 for the new char that will be prepended + 1 for the null terminator */
 		length_new = length_dest + 1 + 1;
 	}
 	
-	printf("\nstrlen of %s = %ld, new length: %ld", *dest, length_dest, length_new);
-	 
         /* resize the string to accomodate an extra character (to prepend) */
         *dest = (char *)realloc(*dest, sizeof(char) * length_new);
 
@@ -31,8 +31,7 @@ static inline void prependChar(const char c, char **dest) {
 
         /* set the given character first character (now empty/garbage?) of the string */
         (*dest)[0] = c;
-	printf("\nstrlen: %ld", strlen(*dest));
-	(*dest)[length_new - 1] = '\0';
 
-	printf("\ndest:%s\n\n", *dest);
+	/* NULL terminate the string */
+	(*dest)[length_new - 1] = '\0';
 }
