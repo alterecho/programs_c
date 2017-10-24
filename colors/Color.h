@@ -8,5 +8,6 @@ struct Color {
 typedef struct Color Color;
 
 Color colorWith(double red, double green, double blue, double alpha);
+Color colorWithHex(const char *str);
 void printColor(Color color, const char *tag);
-Color colorWithString(const char *str);
+

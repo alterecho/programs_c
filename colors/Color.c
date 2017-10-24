@@ -48,3 +48,12 @@ void printColor(Color color, const char *tag) {
 	printf("\n");
 }
 
+Color colorForHex(const char *hex_str) {
+	Color color;
+
+	printf("\ncolorForHex: %s", hex_str);
+	
+
+	return color;
+}
+
