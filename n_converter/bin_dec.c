@@ -44,9 +44,9 @@ long decFromBinStr(const char *bin_str) {
 char binCharFromDec(int decimal) {
 	char c = 'x';
 	
-	if (c == 0) {
+	if (decimal == 0) {
 		c = '0';
-	} else if (c == 1) {
+	} else if (decimal == 1) {
 		c = '1';
 	}
 
@@ -69,12 +69,14 @@ const char *binStrFromDec(long decimal) {
 		prependChar(c, &dec_str);
 		
 		n = quot;
-
+		printf("\ndec_str: %s", dec_str);
 		if (n <= 1) {
 			c = binCharFromDec(n);
 			prependChar(c, &dec_str);
+			printf("\ndec_str: %s", dec_str);
 		}		
 	}
 	
+		
 	return dec_str;
 }
