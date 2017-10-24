@@ -41,8 +41,9 @@ long decFromBinStr(const char *bin_str) {
 	return dec;
 }
 
+/* returns the character for the given binary digit. returns '?' for non-binary digits */
 char binCharFromDec(int decimal) {
-	char c = 'x';
+	char c = '?';
 	
 	if (decimal == 0) {
 		c = '0';
