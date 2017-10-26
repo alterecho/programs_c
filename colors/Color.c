@@ -4,13 +4,13 @@
 #include <stdlib.h>
 
 /* limits value at given pointer to 255.0 */
-void checkColorComponent(double *value) {
+void checkColorComponent(unsigned char *value) {
         if (*value > 255.0) {
                 *value = 255.0;
         }
 }
 
-Color colorWith(double red, double green, double blue, double alpha) {
+Color colorWith(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha) {
 
 	checkColorComponent(&red);
 	checkColorComponent(&green);
@@ -45,62 +45,8 @@ void printColor(Color color, const char *tag) {
 		printf("\n%s: ", tag);
 	}
 
-	printf("(red: %f, green: %f, blue: %f, alpha %f)", color.red, color.green, color.blue, color.alpha);
+	printf("(red: %d, green: %d, blue: %d, alpha %d)", color.red, color.green, color.blue, color.alpha);
 	printf("\n");
-}
-
-Color colorForInt(long n, char componentsCount, long bitsPerComponent) {
-	printf("\ncolorForInt: %ld, %d, %ld", n, componentsCount, bitsPerComponent);
-	Color color;
-
-	char c = 0;
-
-	long filter = 0x0;
-	switch (bitsPerComponent) {
-		case 4:
-			filter = 0xf;
-			break;
-
-		case 8:
-			filter = 0xff;
-			break;
-
-		default:
-			break;
-	}
-
-	while (c < componentsCount) {
-		
-		unsigned char shift = (componentsCount - 1) - c;
-		unsigned char value = (n >> shift) & filter;
-
-		switch (c) {
-			case 0:
-				color.red = value / filter * 255.0;
-				break;
-
-			case 1:
-				color.green = value / filter * 255.0;
-				break;
-			case 2:
-				color.blue = value / filter * 255.0;
-				break;
-
-			case 3:
-				color.alpha = value / filter * 255.0;
-				break;
-
-			default:
-				break;
-		}	
-	
-		c++;		
-	}
-
-	printColor(color, "return");
-
-	return color;
-
 }
 
 Color colorForHex(const char *hex_str) {
@@ -117,24 +63,60 @@ Color colorForHex(const char *hex_str) {
 	long hex_length = strlen(hex_str);
 
 	switch (hex_length) {
-		case 3: 
-			color = colorForInt(n, 3, 4);
-			break;
+		case 3: {
+				int c = 0;
+				while (c < 3) {
+					int val = n >> (4 * (2 - c)) & 0xf;
+					switch (c) {
+						case 0:
+							color.red = val;
+							break;
 
-		case 4:
-			color = colorForInt(n, 4, 4);
-			break;
+						case 1:
+							color.green = val;
+							break;
+
+						case 2:
+							color.blue = val;
+							break;
+
+						case 3:
+							color.alpha = val;
+							break;
+
+							defaul:
+							break;
+					}
+					c++;
+				
+				}
+		}
+		break;
+
+		case 4: {
+			int c = 0;
+		}
+		break;
 
 		case 6:
-			color = colorForInt(n, 3, 8);
-			break;
+		break;
 
 		case 8:
-			color = colorForInt(n, 4, 8);
-			break;
+		break;
 	}
+
 	
-	printColor(color, "return");
+	
+		
+
+	int x = 0xff;
+	printf("\ncolorForHex: %s, n: %ld", hex_str, n);
+	
+
+	int shifted = x >> 4;
+	int n_final = x & 0xf0;
+	printf("\nn: %d (%x), shft: %d, final: %d (%x)", x, x, shifted, n_final, n_final);
+
 	return color;
 }
 

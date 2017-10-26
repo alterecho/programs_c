@@ -1,13 +1,13 @@
 struct Color {
-	double red;
-	double green;
-	double blue;
-	double alpha;
+	unsigned char red;
+	unsigned char green;
+	unsigned char blue;
+	unsigned char alpha;
 };
 
 typedef struct Color Color;
 
-Color colorWith(double red, double green, double blue, double alpha);
+Color colorWith(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha);
 Color colorForHex(const char *str);
 void printColor(Color color, const char *tag);
 
