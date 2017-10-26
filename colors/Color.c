@@ -74,17 +74,18 @@ Color colorForInt(long n, char componentsCount, long bitsPerComponent) {
                 unsigned char shift = bitsPerComponent * ((componentsCount - 1) - c);
                 unsigned char value = (n >> shift) & filter;
  		
-		printf("\nvalue: %d, shift: %d, filter: %lx(%ld)", value, shift, filter, filter);
+		printf("\nvalue: %d (%x), shift: %d, filter: %lx(%ld)", value, value, shift, filter, filter);
                 switch (c) {
                         case 0:
-                                color.red = value / filter * 255.0;
+                                color.red = value / (float)filter * 255.0;
                                 break;
  
                         case 1:
-                                color.green = value / filter * 255.0;
+                                color.green = value / (float)filter * 255.0;
                                 break;
                         case 2:
-                                color.blue = value / filter * 255.0;
+                                color.blue = value / (float)filter * 255.0;
+				printf("\nblue: %d (%x), ", color.blue, color.blue);
                                 break;
  
                         case 3:
