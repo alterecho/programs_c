@@ -50,7 +50,7 @@ void printColor(Color color, const char *tag) {
 }
 
 Color colorForInt(long n, char componentsCount, long bitsPerComponent) {
-        printf("\ncolorForInt: %ld, %d, %ld", n, componentsCount, bitsPerComponent);
+        printf("\ncolorForInt: %ld (%lx), %d, %ld", n, n, componentsCount, bitsPerComponent);
         Color color;
  
         char c = 0;
@@ -71,9 +71,10 @@ Color colorForInt(long n, char componentsCount, long bitsPerComponent) {
  
         while (c < componentsCount) {
                 
-                unsigned char shift = (componentsCount - 1) - c;
+                unsigned char shift = bitsPerComponent * ((componentsCount - 1) - c);
                 unsigned char value = (n >> shift) & filter;
- 
+ 		
+		printf("\nvalue: %d, shift: %d, filter: %lx(%ld)", value, shift, filter, filter);
                 switch (c) {
                         case 0:
                                 color.red = value / filter * 255.0;
@@ -110,8 +111,8 @@ Color colorForInt(long n, char componentsCount, long bitsPerComponent) {
 
 	char *end;
 	long n = strtol(hex_str, &end, 16);
-	if (end != NULL) {
-		printf("\n%s not a hex\n", hex_str);
+	if (end != NULL && strlen(end) != 0) {
+		printf("\n%s not a hex (end: %s)\n", hex_str, end);
 		return color;
 	}
  
