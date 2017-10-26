@@ -10,15 +10,10 @@ struct Color {
 
 typedef struct Color Color;
 
-static inline Color ColorZero() {
-	Color c = {0, 0, 0, 0};
-	return c;
-}
-
-typedef ColorZeror() ColorZero;
-
 Color colorWith(unsigned char red, unsigned char green, unsigned char blue, unsigned char alpha);
 Color colorForHex(const char *str);
 void printColor(Color color, const char *tag);
+
+static const Color ColorZero = {0, 0, 0, 0};
 
 #endif

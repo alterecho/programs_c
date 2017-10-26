@@ -105,7 +105,7 @@ Color colorForInt(long n, char componentsCount, long bitsPerComponent) {
 
  Color colorForHex(const char *hex_str) {
         printf("\ncolorForHex:%s", hex_str);
-        Color color = ColorZero();
+        Color color = ColorZero;
         long hex_length = strlen(hex_str);
 
 	char *end;
