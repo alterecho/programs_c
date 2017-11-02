@@ -3,10 +3,12 @@
 #include <stdio.h>
 #include "functions.h"
 
+#include "hex_dec.h"
+
 char hexCharForDec(long decimal);
 
 /** Returns a string representing the hexadecimal value, for the given decimal */
-char *hexStrFromDec_alloc(long decimal) {
+hex_t hexStrFromDec_alloc(long decimal) {
 
 	long n = decimal;
 
@@ -43,6 +45,10 @@ char *hexStrFromDec_alloc(long decimal) {
 
 
 	return hex_str;
+}
+
+dec_t decFromHex(hex_t hex) {
+
 }
 
 /* returns the hexadecimal character (0 to f), for the given decimal */

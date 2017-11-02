@@ -30,7 +30,7 @@ int main(int argc, char **argv) {
 	/* decimal -> hex */
 	else if (strcmp("-dh", argv[1]) == 0 || strcmp("-dx", argv[1]) == 0) {
 		int n = strtol(argv[2], NULL, 10);
-		char *hex_str = hexStrFromDec_alloc(n);
+		hex_t hex_str = hexStrFromDec_alloc(n);
 		printf("\nhex value of '%s' = %s\n", argv[2], hex_str);
 		free(hex_str);
 	}
