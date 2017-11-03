@@ -1,11 +1,14 @@
+/* hex_dec.c */
+
+#include "hex_dec.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include "functions.h"
-
-#include "hex_dec.h"
+#include <math.h>
 
 char hexCharForDec(long decimal);
+int decForHexChar(char c);
 
 /** Returns a string representing the hexadecimal value, for the given decimal */
 hex_t hexStrFromDec_alloc(dec_t decimal) {
@@ -48,7 +51,16 @@ hex_t hexStrFromDec_alloc(dec_t decimal) {
 }
 
 dec_t decFromHex(hex_t hex) {
-
+	size_t length = strlen(hex);
+	
+	dec_t ret = 0;
+	for (int i = (length - 1); i >= 0; i--) {
+		char c = hex[i];
+		int dec_value = decForHexChar(c);
+		ret += dec_value * pow(16, (length - 1) - i);		
+	}
+	
+	return ret;	
 }
 
 /* returns the hexadecimal character (0 to f), for the given decimal */

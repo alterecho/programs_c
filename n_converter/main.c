@@ -17,22 +17,27 @@ int main(int argc, char **argv) {
 		return 1;
 	}
 
+	const char *conversion_str = argv[1];
+	char *value_str = argv[2];
 	
 	/* binary -> decimal */
-	if (strcmp("-bd", argv[1]) == 0) {
-		printf("\ndecimal value of '%s' = %ld\n", argv[2], decFromBinStr(argv[2]));
+	if (strcmp(conversion_str, "-bd") == 0) {
+		printf("\ndecimal value of '%s' = %ld\n", value_str, decFromBinStr(value_str));
 	}
 	/* decimal -> binary */
-	else if (strcmp("-db", argv[1]) == 0) {
-		int n = atoi(argv[2]);
+	else if (strcmp(conversion_str, "-db") == 0) {
+		int n = atoi(value_str);
 		printf("\nbinary value of '%d' = %s\n", n, binStrFromDec(n));
 	}
 	/* decimal -> hex */
-	else if (strcmp("-dh", argv[1]) == 0 || strcmp("-dx", argv[1]) == 0) {
-		int n = strtol(argv[2], NULL, 10);
+	else if (strcmp(conversion_str, "-dh") == 0 || strcmp(conversion_str, "-dx") == 0) {
+		int n = strtol(value_str, NULL, 10);
 		hex_t hex_str = hexStrFromDec_alloc(n);
-		printf("\nhex value of '%s' = %s\n", argv[2], hex_str);
+		printf("\nhex value of '%s' = %s\n", value_str, hex_str);
 		free(hex_str);
+	} else if (strcmp(conversion_str, "-hd"), conversion_str == 0 || strcmp(conversion_str, "-xd") == 0) {
+		dec_t decimal = decFromHex(value_str);
+		printf("\ndecimal value of '%s' = %lld", value_str, decimal);
 	}
        /* unrecognized */
 	else {
