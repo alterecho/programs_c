@@ -8,11 +8,11 @@
 
 
 /** supported conversions:
-  * -bd: binary -> decimal
-  * -db: decimal -> binary
-  * -dh, -dx: decimal -> hexadecimal
-  * -hd, xd: hexadecimal -> decimal
-**/
+ * -bd: binary -> decimal
+ * -db: decimal -> binary
+ * -dh, -dx: decimal -> hexadecimal
+ * -hd, -xd: hexadecimal -> decimal
+ */
 
 int main(int argc, char **argv) {
 
