@@ -55,6 +55,9 @@ dec_t decFromHex(hex_t hex) {
 	size_t length = strlen(hex);
 	
 	dec_t ret = 0;
+
+	/* method: f12 = fx16^2 + 1x16^1 + 2x16^0 
+	*/
 	for (int i = (length - 1); i >= 0; i--) {
 		char c = hex[i];
 		int dec_value = decForHexChar(c);
