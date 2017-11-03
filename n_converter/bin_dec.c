@@ -1,3 +1,5 @@
+/* bin_dec.c */
+
 #include <stdio.h>
 #include <string.h>
 #include "functions.h"

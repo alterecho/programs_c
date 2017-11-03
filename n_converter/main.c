@@ -1,8 +1,18 @@
+/* main.c */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "bin_dec.h"
 #include "hex_dec.h"
+
+
+/** supported conversions:
+  * -bd: binary -> decimal
+  * -db: decimal -> binary
+  * -dh, -dx: decimal -> hexadecimal
+  * -hd, xd: hexadecimal -> decimal
+**/
 
 int main(int argc, char **argv) {
 
@@ -24,21 +34,27 @@ int main(int argc, char **argv) {
 	if (strcmp(conversion_str, "-bd") == 0) {
 		printf("\ndecimal value of '%s' = %ld\n", value_str, decFromBinStr(value_str));
 	}
+
 	/* decimal -> binary */
 	else if (strcmp(conversion_str, "-db") == 0) {
 		int n = atoi(value_str);
 		printf("\nbinary value of '%d' = %s\n", n, binStrFromDec(n));
 	}
+
 	/* decimal -> hex */
 	else if (strcmp(conversion_str, "-dh") == 0 || strcmp(conversion_str, "-dx") == 0) {
 		int n = strtol(value_str, NULL, 10);
 		hex_t hex_str = hexStrFromDec_alloc(n);
 		printf("\nhex value of '%s' = %s\n", value_str, hex_str);
 		free(hex_str);
-	} else if (strcmp(conversion_str, "-hd"), conversion_str == 0 || strcmp(conversion_str, "-xd") == 0) {
+	}
+
+	/* hex -> decimal */ 
+	else if (strcmp(conversion_str, "-hd"), conversion_str == 0 || strcmp(conversion_str, "-xd") == 0) {
 		dec_t decimal = decFromHex(value_str);
 		printf("\ndecimal value of '%s' = %lld", value_str, decimal);
 	}
+
        /* unrecognized */
 	else {
 		printf("unrecognised conversion specifier '%s'", argv[1]);

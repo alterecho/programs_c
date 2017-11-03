@@ -1,3 +1,6 @@
+/* hex_dec.h */
+
+
 typedef char *hex_t;
 typedef long long dec_t;
 

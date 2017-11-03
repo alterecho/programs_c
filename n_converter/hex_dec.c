@@ -50,6 +50,7 @@ hex_t hexStrFromDec_alloc(dec_t decimal) {
 	return hex_str;
 }
 
+/** Returns a decimal value for the given hexadecimal */
 dec_t decFromHex(hex_t hex) {
 	size_t length = strlen(hex);
 	
@@ -62,6 +63,15 @@ dec_t decFromHex(hex_t hex) {
 	
 	return ret;	
 }
+
+
+
+
+
+
+
+
+
 
 /* returns the hexadecimal character (0 to f), for the given decimal */
 char hexCharForDec(long decimal) {
